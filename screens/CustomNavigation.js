@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Signup from './Signup';
 import HomeScreen from './HomeScreen';
 import Intro from './Intro';
@@ -13,6 +13,7 @@ import Activity from './Activity';
 import Ride from './Ride';
 import ShareLive from './ShareLive';
 import Editprofile from './Editprofile';
+import { BottomTabScreens } from '../App';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,12 +21,12 @@ const Stack = createNativeStackNavigator();
 const FirstScreenNavigator = () => {
   return (
     <Stack.Navigator
-    initialRouteName="Intro"
-    screenOptions={{
-      headerShown: false
-    }}
+      initialRouteName="Intro"
+      screenOptions={{
+        headerShown: false
+      }}
     >
-      <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
+      <Stack.Screen name="HomeScreen" component={BottomTabScreens}></Stack.Screen>
       <Stack.Screen name="Signup" component={Signup}></Stack.Screen>
       <Stack.Screen name="Intro" component={Intro}></Stack.Screen>
       <Stack.Screen name="Offer" component={Offer}></Stack.Screen>
@@ -37,9 +38,9 @@ const FirstScreenNavigator = () => {
       <Stack.Screen name="ShareLive" component={ShareLive}></Stack.Screen>
       <Stack.Screen name="Editprofile" component={Editprofile}></Stack.Screen>
 
-      
+
     </Stack.Navigator>
   );
 };
-export {FirstScreenNavigator};
+export { FirstScreenNavigator };
 

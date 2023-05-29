@@ -8,6 +8,8 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import { useState, useEffect } from 'react';
+import { openDatabase } from 'react-native-sqlite-storage';
 const DATA = [
   {
     title: ' Honda city',
@@ -91,12 +93,45 @@ const DATA = [
     img: require('../assets/car.png'),
   },
 ];
-const Categories = ({navigation}) => {
+const Categories = ({ navigation }) => {
+  var db = openDatabase({ name: 'UserDatabase.db' });
+  const [application, setApplication] = useState([]);
+  useEffect(() => {
+    getAllUsers()
+      .then((users) => {
+        console.log('All users:', users);
+        setApplication(users);
+      })
+      .catch((error) => {
+        console.log('Error retrieving users:', error);
+      });
+  }, []);
+  const getAllUsers = () => {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          'SELECT * FROM application',
+          [],
+          (tx, results) => {
+            const users = [];
+            for (let i = 0; i < results.rows.length; i++) {
+              const user = results.rows.item(i);
+              users.push(user);
+            }
+            resolve(users);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    });
+  };
   return (
-    <View style={{marginTop: 10}}>
+    <View style={{ marginTop: 10 }}>
       <ImageBackground
         source={require('../assets/bg22.jpg')}
-        style={{height: 750, width: 410}}>
+        style={{ height: 750, width: 410 }}>
         <Text
           style={{
             color: '#23BBE8',
@@ -109,8 +144,8 @@ const Categories = ({navigation}) => {
         </Text>
         {
           <FlatList
-            data={DATA}
-            renderItem={({item}) => {
+            data={application}
+            renderItem={({ item }) => {
               return (
                 <View
                   style={{
@@ -126,11 +161,11 @@ const Categories = ({navigation}) => {
                   }}>
                   <View>
                     <Image
-                      style={{height: 60, width: 80}}
-                      source={item.img}></Image>
+                      style={{ height: 60, width: 80 }}
+                      source={{ uri: item.imgUsed }} />
                   </View>
                   <View>
-                    <View style={{flexDirection: 'row'}}>
+                    <View style={{ flexDirection: 'row' }}>
                       <Text
                         style={{
                           fontWeight: 'bold',
@@ -138,7 +173,7 @@ const Categories = ({navigation}) => {
                           color: 'black',
                           fontSize: 16,
                         }}>
-                        {item.title}
+                        {item.vechicleName}
                       </Text>
                       <Text
                         style={{
@@ -147,7 +182,7 @@ const Categories = ({navigation}) => {
                           marginLeft: 60,
                         }}>
                         {' '}
-                        {item.price}
+                        {`Rs: ${item.farePerSeat}/per head`}
                       </Text>
                     </View>
 
@@ -158,13 +193,12 @@ const Categories = ({navigation}) => {
                         marginRight: 120,
                         justifyContent: 'center',
                       }}>
-                      {' '}
-                      {item.description}
+                      {item.pickupPoint} to {item.destination}
                     </Text>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{alignSelf: 'center', color: '#23BBE8'}}>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ alignSelf: 'center', color: '#23BBE8' }}>
                         {' '}
-                        {item.seats}
+                        Seats:{item.availableSeats}
                       </Text>
                       <Text
                         style={{
@@ -173,10 +207,10 @@ const Categories = ({navigation}) => {
                           marginLeft: 10,
                         }}>
                         {' '}
-                        {item.model}
+                        Model:{item.vechicleModel}
                       </Text>
                       <TouchableOpacity
-                       onPress={() => navigation.navigate('Booking')}
+                        onPress={() => navigation.navigate('Booking')}
                         style={{
                           borderWidth: 2,
                           borderRadius: 5,
@@ -184,7 +218,7 @@ const Categories = ({navigation}) => {
                           backgroundColor: '#23BBE8',
                           borderColor: '#23BBE8',
                         }}>
-                        <Text style={{color: 'black', padding: 1}}>
+                        <Text style={{ color: 'black', padding: 1 }}>
                           Book Now
                         </Text>
                       </TouchableOpacity>
