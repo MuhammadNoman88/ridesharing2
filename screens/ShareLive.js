@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, PermissionsAndroid, Share,ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, PermissionsAndroid, Share, ImageBackground, Linking } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import { Linking } from 'react-native';
 
 const ShareLive = () => {
   const [location, setLocation] = useState(null);
   const [isSharing, setIsSharing] = useState(false);
 
   useEffect(() => {
-    // Request location permission on component mount
     requestLocationPermission();
+
     return () => {
-      // Clean up on component unmount
       Geolocation.stopObserving();
     };
   }, []);
@@ -69,7 +67,7 @@ const ShareLive = () => {
 
   const shareLocation = () => {
     const { latitude, longitude } = location;
-    const shareText = `My current location: ${latitude}, ${longitude}`;
+    const shareText = `My Live location: ${latitude}, ${longitude}`;
     const mapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
     Share.share({
       message: `${shareText}\n\n${mapsLink}`,
@@ -82,27 +80,49 @@ const ShareLive = () => {
     Linking.openURL(url);
   };
 
+  const styles = {
+    button: {
+      backgroundColor: '#23BBE8',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+    },
+    buttonText: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  };
+
   return (
-    <View>
-         <ImageBackground
+    <View style={{ flex: 1 }}>
+      <ImageBackground
         source={require('../assets/bg22.jpg')}
-        style={{height: 750, width: 410}}>
-      {location ? (
-        <View>
-            
-          <Text>Latitude: {location.latitude}</Text>
-          <Text>Longitude: {location.longitude}</Text>
-          <Button title="Open in Maps" onPress={openMaps} />
-        </View>
-      ) : (
-        <Text>Waiting for location...</Text>
-      )}
-      {isSharing ? (
-        < Button title="Stop Sharing" onPress={stopSharingLocation} />
-      ) : (
-        <Button title="Start Sharing" onPress={startSharingLocation} />
-      )}
-      <Button title="Share" onPress={shareLocation} />
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
+        {location ? (
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 20, marginBottom: 10 }}>Latitude: {location.latitude}</Text>
+            <Text style={{ fontSize: 20, marginBottom: 10 }}>Longitude: {location.longitude}</Text>
+            <TouchableOpacity style={styles.button} onPress={openMaps}>
+              <Text style={styles.buttonText}>Open in Maps</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <Text style={{ fontSize: 20, marginBottom: 10 }}>Waiting for location...</Text>
+        )}
+        {isSharing ? (
+          <TouchableOpacity style={styles.button} onPress={stopSharingLocation}>
+            <Text style={styles.buttonText}>Stop Sharing</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={startSharingLocation}>
+            <Text style={styles.buttonText}>Start Sharing</Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity style={styles.button} onPress={shareLocation}>
+          <Text style={styles.buttonText}>Share</Text>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );

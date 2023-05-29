@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   hetel: {
     width: '100%',
-    height: '40%',
+    height: '55%',
   },
   des: {
     fontSize: 20,

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const HomeSreen = ({navigation}) => {
+const Signup = ({navigation}) => {
 
   
 
@@ -115,4 +115,4 @@ const HomeSreen = ({navigation}) => {
   );
 };
 
-export default HomeSreen;
+export default Signup;
