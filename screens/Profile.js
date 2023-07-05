@@ -136,7 +136,7 @@ export default function ({ navigation }) {
           }}>
           <Text
             style={{
-              marginLeft: 30,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -145,7 +145,7 @@ export default function ({ navigation }) {
           </Text>
           <Text
             style={{
-              marginLeft: 70,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -166,7 +166,7 @@ export default function ({ navigation }) {
           }}>
           <Text
             style={{
-              marginLeft: 30,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -175,7 +175,7 @@ export default function ({ navigation }) {
           </Text>
           <Text
             style={{
-              marginLeft: 70,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -226,7 +226,7 @@ export default function ({ navigation }) {
           }}>
           <Text
             style={{
-              marginLeft: 30,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -235,7 +235,7 @@ export default function ({ navigation }) {
           </Text>
           <Text
             style={{
-              marginLeft: 70,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -256,7 +256,7 @@ export default function ({ navigation }) {
           }}>
           <Text
             style={{
-              marginLeft: 30,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,
@@ -265,7 +265,7 @@ export default function ({ navigation }) {
           </Text>
           <Text
             style={{
-              marginLeft: 70,
+              marginLeft: 10,
               marginTop: 30,
               color: 'black',
               fontSize: 18,

@@ -16,6 +16,7 @@ import Editprofile from './Editprofile';
 import { BottomTabScreens } from '../App';
 
 
+
 const Stack = createNativeStackNavigator();
 
 const FirstScreenNavigator = () => {
@@ -27,6 +28,9 @@ const FirstScreenNavigator = () => {
       }}
     >
       <Stack.Screen name="HomeScreen" component={BottomTabScreens}></Stack.Screen>
+      <Stack.Screen name="HomeSreen" component={HomeScreen}></Stack.Screen>
+      
+
       <Stack.Screen name="Signup" component={Signup}></Stack.Screen>
       <Stack.Screen name="Intro" component={Intro}></Stack.Screen>
       <Stack.Screen name="Offer" component={Offer}></Stack.Screen>

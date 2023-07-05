@@ -128,7 +128,7 @@ const Categories = ({ navigation }) => {
     });
   };
   return (
-    <View style={{ marginTop: 10 }}>
+    <View style={{ marginTop: 0 }}>
       <ImageBackground
         source={require('../assets/bg22.jpg')}
         style={{ height: 750, width: 410 }}>
@@ -229,22 +229,7 @@ const Categories = ({ navigation }) => {
             }}
           />
         }
-        <TouchableOpacity>
-          <Text
-            style={{
-              borderWidth: 1,
-              backgroundColor: 'blue',
-              borderColor: 'blue',
-              color: 'white',
-              alignSelf: 'center',
-              height: 30,
-              fontSize: 18,
-              textAlign: 'center',
-              width: '80%',
-            }}>
-            Go With It (5)
-          </Text>
-        </TouchableOpacity>
+        
       </ImageBackground>
     </View>
   );

@@ -11,7 +11,7 @@ import React from 'react';
 import { openDatabase } from 'react-native-sqlite-storage';
 
 
-const HomeSreen = ({ navigation }) => {
+const Signup = ({ navigation }) => {
 
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -37,7 +37,7 @@ const HomeSreen = ({ navigation }) => {
               (tx, results) => {
                 if (results.rowsAffected > 0) {
                   ToastAndroid.show('Registration successful', ToastAndroid.SHORT);
-                  navigation.navigate('HomeScreen');
+                  navigation.navigate('HomeSreen');
                 } else {
                   ToastAndroid.show('Registration Failed', ToastAndroid.SHORT);
                 }
@@ -177,4 +177,4 @@ const HomeSreen = ({ navigation }) => {
   );
 };
 
-export default HomeSreen;
+export default Signup;

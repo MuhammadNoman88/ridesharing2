@@ -36,11 +36,11 @@ const Intro = ({navigation}) => {
     );
   };
   const Done = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('HomeSreen');
     setshow('true');
   };
   const skip = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('HomeSreen');
   };
   return (
     <View style={{flex:1}}>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   hetel: {
     width: '100%',
-    height: '40%',
+    height: '55%',
   },
   des: {
     fontSize: 20,

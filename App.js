@@ -6,8 +6,11 @@ import { FirstScreenNavigator } from './screens/CustomNavigation';
 import Profile from './screens/Profile';
 import ShareLive from './screens/ShareLive';
 import HomeSreen from './screens/HomeScreen';
+import Inbox from './screens/Inbox';
+import Offer from './screens/Offer';
 
 const Tab = createBottomTabNavigator();
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -23,7 +26,7 @@ export const BottomTabScreens = () => (
   <Tab.Navigator>
     <Tab.Screen
       name="Home"
-      component={HomeSreen}
+      component={Offer}
       options={{
         tabBarShowLabel: false,
         tabBarIcon: ({ focused }) => (
@@ -90,6 +93,31 @@ export const BottomTabScreens = () => (
         ),
       }}
     />
+     <Tab.Screen
+      name="Inbox"
+      component={Inbox}
+      options={{
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused }) => (
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              top: 3,
+            }}>
+            <Image
+              source={require('../ridesharing2/assets/notif.png')}
+              style={{
+                width: 25,
+                height: 25,
+              }}></Image>
+            <Text style={{ color: focused ? '#23BBE8' : 'black' }}>Notification</Text>
+          </View>
+        ),
+      }}
+    />
+
+
 
   </Tab.Navigator>
 )

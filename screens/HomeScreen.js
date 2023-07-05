@@ -25,7 +25,7 @@ const HomeSreen = ({ navigation }) => {
           if (results.rows.length > 0) {
             AsyncStorage.setItem('userMail', email);
             ToastAndroid.show('Login Successful', ToastAndroid.SHORT);
-            navigation.navigate('Offer')
+            navigation.navigate('HomeScreen')
           } else {
             ToastAndroid.show('Invalid Username or Password', ToastAndroid.SHORT);
           }
